@@ -1,0 +1,14 @@
+services:
+  llm-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: llm-spam-poc
+    environment:
+      - MODEL_NAME=qwen2.5:0.5b
+      - OLLAMA_URL=http://127.0.0.1:11434
+      - OLLAMA_HOST=0.0.0.0:11434
+    ports:
+      - "11434:11434"
+      - "8000:8000"
+    restart: unless-stopped
